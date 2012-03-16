@@ -1,0 +1,11 @@
+<project>
+	<usecases>
+		<usecase>Progamma opstarten</usecase>
+		<usecase>Woord typen</usecase>
+		<usecase>Porgamma afsluiten</usecase>
+	</usecase>
+	<classes>
+		<class>progamma</class>
+		<class>typen</class>
+	</classes>
+</project>
