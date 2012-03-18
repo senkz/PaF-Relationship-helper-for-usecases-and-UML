@@ -7,7 +7,10 @@ import controller.DataController;
 public class ModelDiagram {
 	int versie;
 	private ArrayList<DiagramObject> dol = new ArrayList<DiagramObject>();
-	
+
+	public ArrayList<DiagramObject> getDiagramObjects() {
+		return dol;
+	}
 	
 	private void setVersie(int i) {
 		this.versie = i;

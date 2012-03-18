@@ -1,6 +1,10 @@
 package model;
 
-public class UMLCRUD {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class UMLCRUD implements DiagramObject{
 	private boolean create;
 	private boolean delete;
 	private boolean read;
@@ -9,6 +13,36 @@ public class UMLCRUD {
 	
 	public UMLCRUD(UMLClass cl) {
 		this.umlclass = cl;
+	}
+	
+	public String getType() {
+		return this.getClass().getSimpleName();
+	}
+
+	public String getNaam() {
+		return null;
+	}
+
+	public Map<String, String> getAdditionalInfo() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("class", getClassName());
+		map.put("create", "" + getCreate());
+		map.put("read", "" + getRead());
+		map.put("update", "" + getUpdate());
+		map.put("delete", "" + getDelete());
+		return map;
+	}
+
+	public ArrayList<DiagramObject> getRelatedObjects() {
+		return null;
+	}
+	
+	public void draw() {
+		// TODO
+	}
+	
+	public String getClassName() {
+		return umlclass.getNaam();
 	}
 
 	public boolean getCreate() {
