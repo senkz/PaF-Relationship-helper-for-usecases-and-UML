@@ -2,18 +2,17 @@ package model;
 
 
 public class UMLUsecase implements DiagramObject{
-	UMLCRUD umlcrud;
-
-	@Override
+	private String naam;
+	
+	public void setNaam(String nm) {
+		this.naam = nm;
+	}
+	
 	public String getNaam() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.naam;
 	}
 
-	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
-		
+		// TODO 
 	}
-
 }
