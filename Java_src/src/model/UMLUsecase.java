@@ -6,7 +6,11 @@ import java.util.Map;
 
 public class UMLUsecase implements DiagramObject{
 	private String naam;
-	private ArrayList<DiagramObject> relatedobjectlist;
+	private ArrayList<DiagramObject> relatedobjectlist = new ArrayList<DiagramObject>();
+	
+	public void addCRUD(UMLCRUD crud) {
+		relatedobjectlist.add(crud);
+	}
 	
 	public String getType() {
 		return this.getClass().getSimpleName();

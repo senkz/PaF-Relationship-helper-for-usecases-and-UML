@@ -19,6 +19,10 @@ public class ModelDiagram {
 		return dol;
 	}
 	
+	public void addDiagramObject(DiagramObject dio) {
+		dol.add(dio);
+	}
+	
 	private void setVersie(int i) {
 		this.versie = i;
 	}

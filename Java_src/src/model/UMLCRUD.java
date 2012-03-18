@@ -20,7 +20,7 @@ public class UMLCRUD implements DiagramObject{
 	}
 
 	public String getNaam() {
-		return null;
+		return "";
 	}
 
 	public Map<String, String> getAdditionalInfo() {
