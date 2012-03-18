@@ -36,24 +36,15 @@ public class XMLReader implements ReaderInterface {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(file);
-			doc.getDocumentElement().normalize();
-
-			NodeList nodeLst = doc.getElementsByTagName("usecases");
-			Node fstNode = nodeLst.item(0);
-
-			Element fstElmnt = (Element) fstNode;
-			NodeList usecases = fstElmnt.getElementsByTagName("usecase");
+			
+			NodeList usecases = doc.getElementsByTagName("usecase");
 
 			for (int i = 0; i < usecases.getLength(); i++) {
 				this.usecases.add(usecases.item(i).getChildNodes().item(0)
 						.getNodeValue());
 			}
-
-			NodeList nodeLst2 = doc.getElementsByTagName("classes");
-			Node fstNode2 = nodeLst2.item(0);
-
-			Element fstElmnt2 = (Element) fstNode2;
-			NodeList classes = fstElmnt2.getElementsByTagName("class");
+			
+			NodeList classes = doc.getElementsByTagName("class");
 
 			for (int i = 0; i < classes.getLength(); i++) {
 				this.classes.add(classes.item(i).getChildNodes().item(0)
