@@ -1,8 +1,8 @@
 package controller;
-import export.OutputFormat;
-import export.OutputWriter;
-import export.ReportGenerator;
-import inport.ReaderFactory;
+import fileexport.OutputFormat;
+import fileexport.OutputWriter;
+import fileexport.ReportGenerator;
+import fileimport.ReaderFactory;
 import model.ModelDiagram;
 
 

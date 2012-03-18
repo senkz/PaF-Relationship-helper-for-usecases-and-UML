@@ -1,4 +1,4 @@
-package inport;
+package fileimport;
 import model.ModelDiagram;
 
 
