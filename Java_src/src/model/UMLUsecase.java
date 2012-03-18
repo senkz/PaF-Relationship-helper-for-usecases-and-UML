@@ -1,3 +1,5 @@
+package model;
+
 
 public class UMLUsecase implements DiagramObject{
 	UMLCRUD umlcrud;

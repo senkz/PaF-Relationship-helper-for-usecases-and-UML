@@ -1,3 +1,4 @@
+package export;
 
 public class ReportGenerator {
 	public ReportGenerator() {

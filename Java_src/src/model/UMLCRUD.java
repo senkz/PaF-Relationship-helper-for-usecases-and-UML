@@ -1,3 +1,4 @@
+package model;
 
 public class UMLCRUD {
 	boolean create, delete, read, update;

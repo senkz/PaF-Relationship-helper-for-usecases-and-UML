@@ -1,3 +1,6 @@
+package controller;
+import model.ModelDiagram;
+
 
 public class DataController {
 	private static DataController instance = null;
