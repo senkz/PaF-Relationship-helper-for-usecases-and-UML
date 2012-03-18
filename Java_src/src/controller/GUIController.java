@@ -1,6 +1,5 @@
 package controller;
 import model.ModelDiagram;
-import fileexport.OutputInterface;
 import fileexport.OutputWriter;
 import fileexport.ReportGenerator;
 import fileimport.ReaderFactory;
