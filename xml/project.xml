@@ -3,7 +3,7 @@
 		<usecase>Progamma opstarten</usecase>
 		<usecase>Woord typen</usecase>
 		<usecase>Porgamma afsluiten</usecase>
-	</usecase>
+	</usecases>
 	<classes>
 		<class>progamma</class>
 		<class>typen</class>
