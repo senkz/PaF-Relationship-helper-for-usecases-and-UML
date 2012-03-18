@@ -3,6 +3,7 @@ import fileexport.OutputFormat;
 import fileexport.OutputWriter;
 import fileexport.ReportGenerator;
 import fileimport.ReaderFactory;
+import fileimport.XMLReader;
 import model.ModelDiagram;
 
 
@@ -10,7 +11,7 @@ public class GUIController {
 	DataController dc;
 	ReportGenerator rg;
 	OutputWriter ow;
-	ReaderFactory rf;
+	ReaderFactory rf = new ReaderFactory();
 	
 	public GUIController() {
 		
@@ -20,8 +21,8 @@ public class GUIController {
 		
 	}
 	
-	public ModelDiagram read(String fp) {
-		return null;
+	public ModelDiagram read(String fn) {
+		return rf.read(fn);
 	}
 	
 	public void write(String fp, OutputFormat of) {

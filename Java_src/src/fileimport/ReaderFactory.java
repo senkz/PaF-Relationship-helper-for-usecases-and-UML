@@ -8,6 +8,7 @@ public class ReaderFactory {
 	}
 	
 	public ModelDiagram read(String fn) {
-		return null;
+		XMLReader reader = new XMLReader();
+		return new ModelDiagram(reader.read(fn));
 	}
 }
