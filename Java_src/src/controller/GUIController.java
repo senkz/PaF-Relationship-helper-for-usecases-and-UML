@@ -1,10 +1,9 @@
 package controller;
-import fileexport.OutputFormat;
+import model.ModelDiagram;
+import fileexport.OutputInterface;
 import fileexport.OutputWriter;
 import fileexport.ReportGenerator;
 import fileimport.ReaderFactory;
-import fileimport.XMLReader;
-import model.ModelDiagram;
 
 
 public class GUIController {
@@ -25,7 +24,7 @@ public class GUIController {
 		return rf.read(fp);
 	}
 	
-	public void write(String fp, OutputFormat of) {
-		ow.write(fp, of);
+	public void write(String fp, String form) {
+		ow.write(fp, form);
 	}
 }
