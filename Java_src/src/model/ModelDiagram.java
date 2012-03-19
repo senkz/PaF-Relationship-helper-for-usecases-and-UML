@@ -1,9 +1,13 @@
 package model;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import javax.swing.JPanel;
 
 import controller.DataController;
 
@@ -40,7 +44,7 @@ public class ModelDiagram {
 		    	    System.out.println("added class: " + s);
 	        	}
 	        }
-	        	
+
 	        it.remove();
 	    }
 	    System.out.println("------------------- Finished making ModelDiagram (" + this.versie +  ")\n");
@@ -67,7 +71,41 @@ public class ModelDiagram {
 		this.setVersie(dc.getVersie());
 	}
 	
-	public void draw() {
+	public void draw(JPanel jp) {
+		Graphics g = jp.getGraphics();
+		g.setFont(new Font("Arial", 2, 18));
 		
+		ArrayList<String> objectTypes = new ArrayList<String>();
+		
+		for(DiagramObject dio : dol) {
+			boolean matched = false;
+			for(String s : objectTypes) {
+				if(dio.getType().equals(s)) {
+					matched = true;
+					break;
+				}
+			}
+			if(!matched)
+				objectTypes.add(dio.getType());
+		}
+		
+		int sizeWidth = (400/objectTypes.size()) > 150 ? 150 : (400/objectTypes.size());
+		int sizeHeight = 80;
+
+		Iterator<String> it = objectTypes.iterator();
+		int num = 0;
+	    while (it.hasNext()) {
+	        String s = it.next();
+	        g.drawString(s, (++num)*sizeWidth, (sizeHeight/2));
+	        g.drawString(s, 70, 70);
+	        System.out.println("Teken column naam: " + s + "(x: " +  num*sizeWidth + ", y: " + (sizeHeight/2) + ")");
+	        it.remove();
+	    }
+	    
+		g.drawRect(160, 210, 50, 110);
+		g.fillRect(160, 210, 50, 110);
+		jp.updateUI();
+		System.out.println(g.toString());
+		jp.printAll(g);
 	}
 }

@@ -102,6 +102,7 @@ public class GUI implements ActionListener {
 				popup.setSize(500,500);
 				popup.add(guic.generateReport((String) reportType.getSelectedItem()));
 				popup.setVisible(true);
+				popup.setDefaultCloseOperation(popup.EXIT_ON_CLOSE);
 			}
 		});		
 		

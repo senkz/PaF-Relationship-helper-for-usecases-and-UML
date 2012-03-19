@@ -27,5 +27,5 @@ public interface DiagramObject {
 	void setNaam(String nm);
 	Map<String, String> getAdditionalInfo();
 	ArrayList<DiagramObject> getRelatedObjects();
-	void draw();
+	void draw(int w, int h, int x, int y);
 }

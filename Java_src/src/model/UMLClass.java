@@ -23,7 +23,7 @@ public class UMLClass implements DiagramObject{
 		return null;
 	}
 	
-	public void draw() {
+	public void draw(int w, int h, int x, int y) {
 		// TODO 
 	}
 	
