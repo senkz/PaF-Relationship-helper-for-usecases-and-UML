@@ -28,10 +28,20 @@ public class GUI {
 			}
 		});
 		
+
+		JButton reportButton = new JButton("generate report");
+		reportButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+			}
+		});
+		
 		
 		JPanel buttonPannel = new JPanel();
+		buttonPannel.add(readButton);
+		buttonPannel.add(reportButton);
 		
-		frame.add(buttonPannel, BorderLayout.EAST);
+		frame.add(buttonPannel, BorderLayout.NORTH);
 		
 	}
 }
