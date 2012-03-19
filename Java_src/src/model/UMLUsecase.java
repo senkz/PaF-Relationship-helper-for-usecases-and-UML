@@ -28,7 +28,7 @@ public class UMLUsecase implements DiagramObject{
 		return relatedobjectlist;
 	}
 
-	public void draw() {
+	public void draw(int w, int h, int x, int y) {
 		// TODO 
 	}	
 	

@@ -34,9 +34,9 @@ public class GUI {
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
 		
-		frame.setSize(500,500);
+		frame.setSize(800,800);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		
 		JButton readButton = new JButton("read file");
 		readButton.addActionListener(new ActionListener() {
