@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -9,5 +10,5 @@ public interface DiagramObject {
 	void setNaam(String nm);
 	Map<String, String> getAdditionalInfo();
 	ArrayList<DiagramObject> getRelatedObjects();
-	void draw(int w, int h, int x, int y);
+	void draw(Graphics g, int w, int h, int x, int y);
 }

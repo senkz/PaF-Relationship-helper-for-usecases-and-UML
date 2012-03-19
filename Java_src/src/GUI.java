@@ -38,15 +38,17 @@ public class GUI implements ActionListener {
 	private JCheckBox update = new JCheckBox("Update");
 	private JCheckBox delete = new JCheckBox("Delete");
 	private UMLUsecase usecase;
+	private JComboBox<UMLClass> UMLClassCB = new JComboBox<UMLClass>();
+	private JComboBox<UMLUsecase> UMLUsecaseCB = new JComboBox<UMLUsecase>();
 
 	public GUI() {
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
 		
-		frame.setSize(1000,500);
+		frame.setSize(700,120);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		//frame.setResizable(false);
+		frame.setResizable(false);
 		
 		JButton readButton = new JButton("read file");
 		readButton.addActionListener(new ActionListener() {
@@ -103,7 +105,6 @@ public class GUI implements ActionListener {
 				popup.setSize(500,500);
 				popup.add(guic.generateReport((String) reportType.getSelectedItem()));
 				popup.setVisible(true);
-				popup.setDefaultCloseOperation(popup.EXIT_ON_CLOSE);
 			}
 		});		
 		
@@ -123,17 +124,46 @@ public class GUI implements ActionListener {
 		buttonPanel.add(reportPanel);
 		
 		frame.add(buttonPanel, BorderLayout.NORTH);
-		frame.add(drawPanel, BorderLayout.CENTER);
 		frame.add(modelDropdowns, BorderLayout.SOUTH);
+		
+		JFrame jf = new JFrame();
+		jf.setLayout(new BorderLayout());
+		jf.getContentPane().setBackground(Color.WHITE);
+		
+		jf.setSize(500,500);
+		jf.setVisible(true);
+		jf.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		jf.add(drawPanel, BorderLayout.CENTER);
+		jf.setResizable(false);
+		
 
-		Graphics g = drawPanel.getGraphics();
-		g.fillRect(40, 160, 50, 160);
+		UMLClassCB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if((UMLClass)UMLClassCB.getSelectedItem() != null && (UMLUsecase)UMLUsecaseCB.getSelectedItem() != null)
+					refreshCrud((UMLClass)UMLClassCB.getSelectedItem(), (UMLUsecase)UMLUsecaseCB.getSelectedItem());	
+			}
+		});
+		
+		UMLUsecaseCB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if((UMLClass)UMLClassCB.getSelectedItem() != null && (UMLUsecase)UMLUsecaseCB.getSelectedItem() != null)
+					refreshCrud((UMLClass)UMLClassCB.getSelectedItem(), (UMLUsecase)UMLUsecaseCB.getSelectedItem());	
+			}
+		});
+		
+		modelDropdowns.setLayout(new BorderLayout());
+		modelDropdowns.add(UMLClassCB,BorderLayout.EAST);
+		modelDropdowns.add(UMLUsecaseCB,BorderLayout.WEST);
+		modelDropdowns.add(crudPanel,BorderLayout.CENTER);
 	}
 	
 	private void refreshUMLDropdownPanel() {
-		modelDropdowns.removeAll();
-		final JComboBox<UMLClass> UMLClass = new JComboBox<UMLClass>();
-		final JComboBox<UMLUsecase> UMLUsecase = new JComboBox<UMLUsecase>();
+		UMLClassCB.removeAllItems();
+		UMLUsecaseCB.removeAllItems();
 		
 		if(guic.getModel() == null) {
 			return;
@@ -141,34 +171,14 @@ public class GUI implements ActionListener {
 		
 		for(DiagramObject dio : guic.getModel().getDiagramObjects()) {
 			if(dio.getClass() == UMLClass.class) {
-				UMLClass.addItem((model.UMLClass) dio);
+				UMLClassCB.addItem((model.UMLClass) dio);
 			}
 			if(dio.getClass() == UMLUsecase.class) {
-				UMLUsecase.addItem((model.UMLUsecase) dio);
+				UMLUsecaseCB.addItem((model.UMLUsecase) dio);
 			}
 		}
 		
-		UMLClass.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());	
-			}
-		});
-		
-		UMLUsecase.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());	
-			}
-		});
-		
-		modelDropdowns.setLayout(new BorderLayout());
-		modelDropdowns.add(UMLClass,BorderLayout.EAST);
-		modelDropdowns.add(UMLUsecase,BorderLayout.WEST);
-		modelDropdowns.add(crudPanel,BorderLayout.CENTER);
-		refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());
+		//refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());
 		modelDropdowns.updateUI();
 	}
 	

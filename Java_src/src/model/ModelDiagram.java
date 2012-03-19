@@ -85,18 +85,41 @@ public class ModelDiagram {
 		}
 		
 		int sizeWidth = (400/objectTypes.size()) > 150 ? 150 : (400/objectTypes.size());
-		int sizeHeight = 80;
+		int sizeHeight = 80;	    
+	    
+	    ArrayList<DiagramObject> lUc = new ArrayList<DiagramObject>();
+	    ArrayList<DiagramObject> lCl = new ArrayList<DiagramObject>();
+	    for(DiagramObject dio : dol) {
+	    	if(dio.getType().equals("UMLClass"))
+	    		lCl.add(dio);
+	    	if(dio.getType().equals("UMLUsecase"))
+	    		lUc.add(dio);
+	    }
+	    
 
 		Iterator<String> it = objectTypes.iterator();
 		int num = 0;
+		int numCl = 0;
+		int numUc = 0;
 	    while (it.hasNext()) {
 	        String s = it.next();
-	        g.drawString(s, (++num)*sizeWidth, (sizeHeight/2));
-	        g.drawString(s, 70, 70);
+	        g.drawString(s, (num*sizeWidth)+15, (sizeHeight/2));
+	        
+	        if(s.equals("UMLClass")) {
+	        	for(DiagramObject dio : lCl) {
+	        		dio.draw(g, (sizeWidth-15), (sizeHeight-5), (num*(sizeWidth+20)), (++numCl*(sizeHeight)));
+	        	}
+	        }
+	        
+	        if(s.equals("UMLUsecase")) {
+	        	for(DiagramObject dio : lUc) {
+	        		dio.draw(g, (sizeWidth-15), (sizeHeight-5), (num*(sizeWidth+20)), (++numUc*(sizeHeight)));
+	        	}
+	        }
+	        
+	        num++;
 	        it.remove();
 	    }
 	    
-		g.drawRect(160, 210, 50, 110);
-		g.fillRect(160, 210, 50, 110);
 	}
 }

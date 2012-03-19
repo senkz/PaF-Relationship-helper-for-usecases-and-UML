@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -23,8 +25,13 @@ public class UMLClass implements DiagramObject{
 		return null;
 	}
 	
-	public void draw(int w, int h, int x, int y) {
-		// TODO 
+	public void draw(Graphics g, int w, int h, int x, int y) {
+		g.setColor(Color.YELLOW);
+		g.fillRect(x, y, w, h);
+		g.setColor(Color.BLACK);
+		g.drawRect(x, y, w, h);
+		g.drawRect(x, y, w, h-15);
+		g.drawString(getNaam(), x+15, y+(h/2));
 	}
 	
 	public void setNaam(String nm) {

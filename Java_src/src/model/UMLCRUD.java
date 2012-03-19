@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class UMLCRUD implements DiagramObject{
 		return null;
 	}
 	
-	public void draw(int w, int h, int x, int y) {
+	public void draw(Graphics g, int w, int h, int x, int y) {
 		// TODO
 	}
 	

@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -48,8 +50,12 @@ public class UMLUsecase implements DiagramObject{
 		return relatedobjectlist;
 	}
 
-	public void draw(int w, int h, int x, int y) {
-		// TODO 
+	public void draw(Graphics g, int w, int h, int x, int y) {
+		g.setColor(Color.GREEN);
+		g.fillOval(x, y, w, h);
+		g.setColor(Color.BLACK);
+		g.drawOval(x, y, w, h);
+		g.drawString(getNaam(), x+15, y+(h/2));
 	}	
 	
 	public void setNaam(String nm) {
