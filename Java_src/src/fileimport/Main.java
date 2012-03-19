@@ -17,7 +17,7 @@ public class Main {
 	        Map.Entry pairs = (Map.Entry)it.next();
 	        System.out.println(pairs.getKey() + " = " + pairs.getValue());
 	        it.remove();
-	    }		
+	    }
 	}
 
 }

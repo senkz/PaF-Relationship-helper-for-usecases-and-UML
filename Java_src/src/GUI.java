@@ -1,11 +1,37 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import controller.GUIController;
 
 
 public class GUI {
-	GUIController guic;
-	
+	private GUIController guic;
+
 	public GUI() {
+		JFrame frame = new JFrame();
+		frame.setLayout(new BorderLayout());
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setSize(400,480);
+		frame.setVisible(true);
+		
+		
+		JButton readButton = new JButton("read file");
+		readButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+			}
+		});
+		
+		
+		JPanel buttonPannel = new JPanel();
+		
+		frame.add(buttonPannel, BorderLayout.EAST);
 		
 	}
-
 }

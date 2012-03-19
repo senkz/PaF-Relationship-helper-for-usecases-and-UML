@@ -76,4 +76,6 @@ public class UMLCRUD implements DiagramObject{
 	public void setUpdate(boolean update) {
 		this.update = update;
 	}
+
+	public void setNaam(String nm) {}
 }
