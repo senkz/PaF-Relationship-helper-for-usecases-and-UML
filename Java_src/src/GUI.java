@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +26,11 @@ public class GUI {
 	public GUI() {
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setSize(400, 480);
+		
+		frame.setSize(500,500);
 		frame.setVisible(true);
-
+		frame.setResizable(false);
+		
 		JButton readButton = new JButton("read file");
 		readButton.addActionListener(new ActionListener() {
 			@Override
@@ -75,14 +79,24 @@ public class GUI {
 		reportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				guic.generateReport();
 			}
-		});
+		});		
+		
+		JPanel drawPanel = new JPanel();
+		drawPanel.setPreferredSize(new Dimension(400,400));
+		drawPanel.setBackground(Color.RED);
+		drawPanel.setForeground(Color.BLACK);
 
-		JPanel buttonPannel = new JPanel();
-		buttonPannel.add(readButton);
-		buttonPannel.add(exportPanel);
-		buttonPannel.add(reportButton);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(readButton);
+		buttonPanel.add(exportPanel);
+		buttonPanel.add(reportButton);
+		
+		frame.add(buttonPanel, BorderLayout.NORTH);
+		frame.add(drawPanel, BorderLayout.CENTER);
 
-		frame.add(buttonPannel, BorderLayout.NORTH);
+		Graphics g = drawPanel.getGraphics();
+		g.fillRect(40, 160, 50, 160);
 	}
 }

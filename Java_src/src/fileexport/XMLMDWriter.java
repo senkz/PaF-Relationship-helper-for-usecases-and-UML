@@ -12,6 +12,7 @@ import model.UMLClass;
 import model.UMLUsecase;
 
 public class XMLMDWriter implements OutputInterface{
+	// + System.getProperty("line.seperator"));
 
 	public void write(String fn, ModelDiagram md) {
 		ArrayList<DiagramObject> dol = md.getDiagramObjects();
@@ -23,7 +24,7 @@ public class XMLMDWriter implements OutputInterface{
 			out.write("<XMLMD>" + System.getProperty( "line.separator" ));
 			
 			for(DiagramObject dio : dol) {
-				ArrayList<String> doTransformedlist = transformDiagramObjectToArray(dio, true);
+				ArrayList<String> doTransformedlist = transformDOToStrings(dio);
 				for(String s : doTransformedlist) {
 					out.write(s + System.getProperty( "line.separator" ));
 				}
@@ -36,7 +37,7 @@ public class XMLMDWriter implements OutputInterface{
 		}
 	}
 	
-	private ArrayList<String> transformDiagramObjectToArray(DiagramObject dio, boolean includeRelatedObjects) {
+	private ArrayList<String> transformDOToStrings(DiagramObject dio) {
 		ArrayList<String> list = new ArrayList<String>();
 		
 		String type = dio.getType();
@@ -57,7 +58,7 @@ public class XMLMDWriter implements OutputInterface{
 		}
 		if(rolist != null) {
 			for(DiagramObject ro : rolist) {
-				ArrayList<String> roTransformedlist = transformDiagramObjectToArray(ro, false);
+				ArrayList<String> roTransformedlist = transformDOToStrings(ro);
 				for(String s : roTransformedlist) {
 					
 					list.add("  " + s);
