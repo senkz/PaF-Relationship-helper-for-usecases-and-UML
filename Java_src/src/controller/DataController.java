@@ -1,7 +1,10 @@
 package controller;
 import java.util.ArrayList;
 
+import model.DiagramObject;
 import model.ModelDiagram;
+import model.UMLCRUD;
+import model.UMLUsecase;
 
 
 public class DataController {
@@ -39,5 +42,9 @@ public class DataController {
 			if(m.getVersie() > i)
 				i = m.getVersie()+1;
 		return i;
+	}
+	
+	public void addCrud(UMLUsecase uc, UMLCRUD crud) {
+		uc.addCRUD(crud);
 	}
 }

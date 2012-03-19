@@ -1,5 +1,8 @@
 package controller;
+import model.DiagramObject;
 import model.ModelDiagram;
+import model.UMLCRUD;
+import model.UMLUsecase;
 import fileexport.OutputWriter;
 import fileexport.ReportGenerator;
 import fileimport.ReaderFactory;
@@ -30,4 +33,9 @@ public class GUIController {
 	public ModelDiagram getModel() {
 		return dc.getModel();
 	}
+	
+	public void addCrud (UMLUsecase uc, UMLCRUD crud) {
+		dc.addCrud(uc, crud);
+	}
+	
 }
