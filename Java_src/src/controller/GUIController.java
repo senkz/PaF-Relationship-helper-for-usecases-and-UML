@@ -6,21 +6,21 @@ import fileimport.ReaderFactory;
 
 
 public class GUIController {
-	DataController dc = DataController.getInstance();
+	DataController dc;
 	ReportGenerator rg = new ReportGenerator();
 	OutputWriter ow = new OutputWriter();
 	ReaderFactory rf = new ReaderFactory();
 	
 	public GUIController() {
-		
+		dc =  DataController.getInstance();
 	}
 	
 	public void generateReport() {
 		rg.generateReport();
 	}
 	
-	public ModelDiagram read(String fp) {
-		return rf.read(fp);
+	public void read(String fp) {
+		dc.addModel(rf.read(fp));
 	}
 	
 	public void write(String fp, String form) {

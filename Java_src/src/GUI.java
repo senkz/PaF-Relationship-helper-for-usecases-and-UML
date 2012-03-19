@@ -28,6 +28,7 @@ public class GUI {
 	private JFrame frame = new JFrame();
 	private JFileChooser fileBrowser = new JFileChooser();
 	private JComboBox<String> exportType = new JComboBox<String>();
+	JPanel modelDropdowns = new JPanel();
 
 	public GUI() {
 		frame.setLayout(new BorderLayout());
@@ -46,7 +47,7 @@ public class GUI {
 					filename.setText(fileBrowser.getSelectedFile().getName());
 					dir.setText(fileBrowser.getCurrentDirectory().toString());
 					guic.read(dir.getText()+"\\"+filename.getText());
-					initializeUMLDropdownPanel();
+					refreshUMLDropdownPanel();
 				}
 				if (rVal == JFileChooser.CANCEL_OPTION) {
 					filename.setText("You pressed cancel");
@@ -102,13 +103,14 @@ public class GUI {
 		
 		frame.add(buttonPanel, BorderLayout.NORTH);
 		frame.add(drawPanel, BorderLayout.CENTER);
+		frame.add(modelDropdowns, BorderLayout.SOUTH);
 
 		Graphics g = drawPanel.getGraphics();
 		g.fillRect(40, 160, 50, 160);
 	}
 	
-	private void initializeUMLDropdownPanel() {
-		JPanel modelDropdowns = new JPanel();
+	private void refreshUMLDropdownPanel() {
+		modelDropdowns.removeAll();
 		JComboBox<UMLClass> UMLClass = new JComboBox<UMLClass>();
 		JComboBox<UMLUsecase> UMLUsecase = new JComboBox<UMLUsecase>();
 		
@@ -129,6 +131,5 @@ public class GUI {
 		modelDropdowns.setLayout(new BorderLayout());
 		modelDropdowns.add(UMLClass,BorderLayout.EAST);
 		modelDropdowns.add(UMLUsecase,BorderLayout.WEST);
-		frame.add(modelDropdowns);
 	}
 }
