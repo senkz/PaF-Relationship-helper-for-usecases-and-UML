@@ -18,8 +18,8 @@ public class GUIController {
 		dc =  DataController.getInstance();
 	}
 	
-	public void generateReport() {
-		rg.generateReport();
+	public void generateReport(String reportType) {
+		rg.generateReport(reportType);
 	}
 	
 	public void read(String fp) {

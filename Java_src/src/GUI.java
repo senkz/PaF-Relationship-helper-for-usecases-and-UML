@@ -86,7 +86,7 @@ public class GUI {
 		reportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				guic.generateReport();
+				guic.generateReport("crud"); // hardcoded, via dropdown aangeven zoals filetype, JPanel moet ergens naartoe
 			}
 		});		
 		
