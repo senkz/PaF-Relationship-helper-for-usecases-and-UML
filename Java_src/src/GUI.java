@@ -45,6 +45,7 @@ public class GUI implements ActionListener {
 		
 		frame.setSize(1000,500);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		//frame.setResizable(false);
 		
 		JButton readButton = new JButton("read file");
@@ -102,6 +103,7 @@ public class GUI implements ActionListener {
 				popup.setSize(500,500);
 				popup.add(guic.generateReport((String) reportType.getSelectedItem()));
 				popup.setVisible(true);
+				popup.setDefaultCloseOperation(popup.EXIT_ON_CLOSE);
 			}
 		});		
 		
@@ -134,7 +136,6 @@ public class GUI implements ActionListener {
 		final JComboBox<UMLUsecase> UMLUsecase = new JComboBox<UMLUsecase>();
 		
 		if(guic.getModel() == null) {
-			System.out.println("NULL modeldiagram");
 			return;
 		}
 		
@@ -171,8 +172,7 @@ public class GUI implements ActionListener {
 		modelDropdowns.updateUI();
 	}
 	
-	private void refreshCrud(UMLClass uclass,final UMLUsecase usecase) {
-		System.out.println(uclass.getNaam());		
+	private void refreshCrud(UMLClass uclass,final UMLUsecase usecase) {	
 		crudPanel.removeAll();
 		this.usecase = usecase;
 		crud = new UMLCRUD(uclass);
