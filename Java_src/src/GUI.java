@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import controller.GUIController;
 
 public class GUI {
-	private GUIController guic;
+	private GUIController guic = new GUIController();
 	private JTextField filename = new JTextField(), dir = new JTextField();
 	private JFrame frame = new JFrame();
 	private JFileChooser fileBrowser = new JFileChooser();
@@ -31,7 +31,6 @@ public class GUI {
 				if (rVal == JFileChooser.APPROVE_OPTION) {
 					filename.setText(fileBrowser.getSelectedFile().getName());
 					dir.setText(fileBrowser.getCurrentDirectory().toString());
-					System.out.println(dir.getText()+filename.getText());
 					guic.read(dir.getText()+"\\"+filename.getText());
 				}
 				if (rVal == JFileChooser.CANCEL_OPTION) {
