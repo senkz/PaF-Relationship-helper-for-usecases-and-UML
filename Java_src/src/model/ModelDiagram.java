@@ -19,8 +19,6 @@ public class ModelDiagram {
 		DataController dc = DataController.getInstance();
 		this.setVersie(dc.getVersie());
 
-	    System.out.println("\n------------------- Started making ModelDiagram (" + this.versie +  ")");
-
 	    Iterator it = input.entrySet().iterator();
 	    while (it.hasNext()) {
 	        Map.Entry pairs = (Map.Entry)it.next();
@@ -31,7 +29,6 @@ public class ModelDiagram {
 		        	DiagramObject dio = new UMLUsecase();
 		        	dio.setNaam(s);
 		        	this.addDiagramObject(dio);
-		    	    System.out.println("added usecase: " + s);
 	        	}
 	        }
 	        
@@ -41,13 +38,11 @@ public class ModelDiagram {
 		        	DiagramObject dio = new UMLClass();
 		        	dio.setNaam(s);
 		        	this.addDiagramObject(dio);
-		    	    System.out.println("added class: " + s);
 	        	}
 	        }
 
 	        it.remove();
 	    }
-	    System.out.println("------------------- Finished making ModelDiagram (" + this.versie +  ")\n");
 	}
 
 	public ArrayList<DiagramObject> getDiagramObjects() {
@@ -98,14 +93,12 @@ public class ModelDiagram {
 	        String s = it.next();
 	        g.drawString(s, (++num)*sizeWidth, (sizeHeight/2));
 	        g.drawString(s, 70, 70);
-	        System.out.println("Teken column naam: " + s + "(x: " +  num*sizeWidth + ", y: " + (sizeHeight/2) + ")");
 	        it.remove();
 	    }
 	    
 		g.drawRect(160, 210, 50, 110);
 		g.fillRect(160, 210, 50, 110);
 		jp.updateUI();
-		System.out.println(g.toString());
 		jp.printAll(g);
 	}
 }
