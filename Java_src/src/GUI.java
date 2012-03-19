@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,7 +18,6 @@ import model.DiagramObject;
 import model.UMLCRUD;
 import model.UMLClass;
 import model.UMLUsecase;
-
 import controller.GUIController;
 
 public class GUI {
@@ -29,6 +27,7 @@ public class GUI {
 	private JFileChooser fileBrowser = new JFileChooser();
 	private JComboBox<String> exportType = new JComboBox<String>();
 	JPanel modelDropdowns = new JPanel();
+	JPanel crudPanel = new JPanel();
 
 	public GUI() {
 		frame.setLayout(new BorderLayout());
@@ -36,7 +35,7 @@ public class GUI {
 		
 		frame.setSize(500,500);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		
 		JButton readButton = new JButton("read file");
 		readButton.addActionListener(new ActionListener() {
@@ -58,7 +57,7 @@ public class GUI {
 		
 		exportType.addItem("xmlmd");
 		
-		JLabel chooseExportType = new JLabel("Kies export formaat");
+		JLabel chooseExportType = new JLabel("Choose export format");
 		
 		JButton exportButton = new JButton("save file");
 		exportButton.addActionListener(new ActionListener() {
@@ -131,5 +130,10 @@ public class GUI {
 		modelDropdowns.setLayout(new BorderLayout());
 		modelDropdowns.add(UMLClass,BorderLayout.EAST);
 		modelDropdowns.add(UMLUsecase,BorderLayout.WEST);
+	}
+	
+	private void refreshCrud(UMLClass uclass,UMLUsecase usecase) {
+		UMLCRUD crud = new UMLCRUD(uclass);
+		
 	}
 }

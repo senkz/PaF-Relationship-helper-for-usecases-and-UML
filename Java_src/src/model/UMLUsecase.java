@@ -9,6 +9,15 @@ public class UMLUsecase implements DiagramObject{
 	private ArrayList<DiagramObject> relatedobjectlist = new ArrayList<DiagramObject>();
 	
 	public void addCRUD(UMLCRUD crud) {
+		for (DiagramObject dol : relatedobjectlist) {
+			if (dol instanceof UMLCRUD) {
+				if(crud.getClassName().equals(((UMLCRUD) dol).getClassName())) {
+					relatedobjectlist.remove(dol);
+					relatedobjectlist.add(crud);
+					return;
+				}
+			}
+		}
 		relatedobjectlist.add(crud);
 	}
 	
