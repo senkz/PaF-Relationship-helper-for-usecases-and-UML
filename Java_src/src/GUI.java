@@ -44,6 +44,7 @@ public class GUI implements ActionListener {
 		
 		frame.setSize(1000,500);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		//frame.setResizable(false);
 		
 		JButton readButton = new JButton("read file");
