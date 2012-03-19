@@ -1,5 +1,6 @@
 package controller;
-import model.DiagramObject;
+import javax.swing.JPanel;
+
 import model.ModelDiagram;
 import model.UMLCRUD;
 import model.UMLClass;
@@ -19,8 +20,8 @@ public class GUIController {
 		dc =  DataController.getInstance();
 	}
 	
-	public void generateReport(String reportType) {
-		rg.generateReport(reportType);
+	public JPanel generateReport(String reportType) {
+		return rg.generateReport(reportType);
 	}
 	
 	public void read(String fp) {

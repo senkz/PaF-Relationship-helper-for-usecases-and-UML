@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import model.DiagramObject;
@@ -27,6 +28,7 @@ public class GUI implements ActionListener {
 	private JFrame frame = new JFrame();
 	private JFileChooser fileBrowser = new JFileChooser();
 	private JComboBox<String> exportType = new JComboBox<String>();
+	private JComboBox<String> reportType = new JComboBox<String>();
 	private JPanel modelDropdowns = new JPanel();
 	private JPanel crudPanel = new JPanel();
 	private UMLCRUD crud;
@@ -40,7 +42,7 @@ public class GUI implements ActionListener {
 		frame.setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
 		
-		frame.setSize(500,500);
+		frame.setSize(1000,500);
 		frame.setVisible(true);
 		//frame.setResizable(false);
 		
@@ -62,10 +64,9 @@ public class GUI implements ActionListener {
 			}
 		});
 		
-		exportType.addItem("xmlmd");
-		
 		JLabel chooseExportType = new JLabel("Choose export format");
-		
+		exportType.addItem("xmlmd");
+				
 		JButton exportButton = new JButton("save file");
 		exportButton.addActionListener(new ActionListener() {
 			@Override
@@ -88,14 +89,26 @@ public class GUI implements ActionListener {
 		exportPanel.add(chooseExportType);
 		exportPanel.add(exportType);
 		exportPanel.add(exportButton);
+		
+		JLabel chooseReportType = new JLabel("Choose report format");
+		reportType.addItem("crud");
 
 		JButton reportButton = new JButton("generate report");
 		reportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				guic.generateReport("crud"); // hardcoded, via dropdown aangeven zoals filetype, JPanel moet ergens naartoe
+				JFrame popup = new JFrame((String) reportType.getSelectedItem());
+				popup.setSize(500,500);
+				popup.add(guic.generateReport((String) reportType.getSelectedItem()));
+				popup.setVisible(true);
 			}
 		});		
+		
+		JPanel reportPanel = new JPanel();
+		exportPanel.setLayout(new GridLayout(2,1));
+		exportPanel.add(chooseReportType);
+		exportPanel.add(reportType);
+		exportPanel.add(reportButton);
 		
 		JPanel drawPanel = new JPanel();
 		drawPanel.setPreferredSize(new Dimension(400,400));
@@ -105,7 +118,7 @@ public class GUI implements ActionListener {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(readButton);
 		buttonPanel.add(exportPanel);
-		buttonPanel.add(reportButton);
+		buttonPanel.add(reportPanel);
 		
 		frame.add(buttonPanel, BorderLayout.NORTH);
 		frame.add(drawPanel, BorderLayout.CENTER);
