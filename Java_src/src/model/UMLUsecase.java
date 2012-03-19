@@ -21,6 +21,17 @@ public class UMLUsecase implements DiagramObject{
 		relatedobjectlist.add(crud);
 	}
 	
+	public UMLCRUD getCrud(UMLClass uclass) {
+		for (DiagramObject dol : relatedobjectlist) {
+			if (dol instanceof UMLCRUD) {
+				if(uclass.getNaam().equals(((UMLCRUD) dol).getClassName())) {
+					return (UMLCRUD) dol;
+				}
+			}
+		}
+		return null;
+	}
+	
 	public String getType() {
 		return this.getClass().getSimpleName();
 	}

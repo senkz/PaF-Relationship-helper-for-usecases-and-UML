@@ -2,6 +2,7 @@ package controller;
 import model.DiagramObject;
 import model.ModelDiagram;
 import model.UMLCRUD;
+import model.UMLClass;
 import model.UMLUsecase;
 import fileexport.OutputWriter;
 import fileexport.ReportGenerator;
@@ -36,6 +37,10 @@ public class GUIController {
 	
 	public void addCrud (UMLUsecase uc, UMLCRUD crud) {
 		dc.addCrud(uc, crud);
+	}
+	
+	public UMLCRUD getCrud(UMLClass uclass, UMLUsecase usecase) {
+		return dc.getCrud(uclass, usecase);
 	}
 	
 }

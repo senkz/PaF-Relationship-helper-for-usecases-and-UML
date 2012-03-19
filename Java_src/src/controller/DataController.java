@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import model.DiagramObject;
 import model.ModelDiagram;
 import model.UMLCRUD;
+import model.UMLClass;
 import model.UMLUsecase;
 
 
@@ -46,5 +47,9 @@ public class DataController {
 	
 	public void addCrud(UMLUsecase uc, UMLCRUD crud) {
 		uc.addCRUD(crud);
+	}
+	
+	public UMLCRUD getCrud(UMLClass uclass,UMLUsecase usecase) {
+		return usecase.getCrud(uclass);
 	}
 }

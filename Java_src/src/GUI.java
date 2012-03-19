@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -20,14 +21,20 @@ import model.UMLClass;
 import model.UMLUsecase;
 import controller.GUIController;
 
-public class GUI {
+public class GUI implements ActionListener {
 	private GUIController guic = new GUIController();
 	private JTextField filename = new JTextField(), dir = new JTextField();
 	private JFrame frame = new JFrame();
 	private JFileChooser fileBrowser = new JFileChooser();
 	private JComboBox<String> exportType = new JComboBox<String>();
-	JPanel modelDropdowns = new JPanel();
-	JPanel crudPanel = new JPanel();
+	private JPanel modelDropdowns = new JPanel();
+	private JPanel crudPanel = new JPanel();
+	private UMLCRUD crud;
+	private JCheckBox create = new JCheckBox("Create");
+	private JCheckBox read = new JCheckBox("Read");
+	private JCheckBox update = new JCheckBox("Update");
+	private JCheckBox delete = new JCheckBox("Delete");
+	private UMLUsecase usecase;
 
 	public GUI() {
 		frame.setLayout(new BorderLayout());
@@ -110,8 +117,8 @@ public class GUI {
 	
 	private void refreshUMLDropdownPanel() {
 		modelDropdowns.removeAll();
-		JComboBox<UMLClass> UMLClass = new JComboBox<UMLClass>();
-		JComboBox<UMLUsecase> UMLUsecase = new JComboBox<UMLUsecase>();
+		final JComboBox<UMLClass> UMLClass = new JComboBox<UMLClass>();
+		final JComboBox<UMLUsecase> UMLUsecase = new JComboBox<UMLUsecase>();
 		
 		if(guic.getModel() == null) {
 			System.out.println("NULL modeldiagram");
@@ -127,13 +134,74 @@ public class GUI {
 			}
 		}
 		
+		UMLClass.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());	
+			}
+		});
+		
+		UMLUsecase.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());	
+			}
+		});
+		
 		modelDropdowns.setLayout(new BorderLayout());
 		modelDropdowns.add(UMLClass,BorderLayout.EAST);
 		modelDropdowns.add(UMLUsecase,BorderLayout.WEST);
+		modelDropdowns.add(crudPanel,BorderLayout.CENTER);
+		refreshCrud((UMLClass)UMLClass.getSelectedItem(), (UMLUsecase)UMLUsecase.getSelectedItem());
+		modelDropdowns.updateUI();
 	}
 	
-	private void refreshCrud(UMLClass uclass,UMLUsecase usecase) {
-		UMLCRUD crud = new UMLCRUD(uclass);
+	private void refreshCrud(UMLClass uclass,final UMLUsecase usecase) {
+		System.out.println(uclass.getNaam());		
+		crudPanel.removeAll();
+		this.usecase = usecase;
+		crud = new UMLCRUD(uclass);
 		
+		create.setSelected(false);
+		read.setSelected(false);
+		update.setSelected(false);
+		delete.setSelected(false);
+		
+		if(guic.getCrud(uclass, usecase)!=null) {
+			crud = guic.getCrud(uclass, usecase);
+			create.setSelected(crud.getCreate());
+			read.setSelected(crud.getRead());
+			update.setSelected(crud.getUpdate());
+			delete.setSelected(crud.getDelete());
+		}
+		
+		create.addActionListener(this);
+		read.addActionListener(this);
+		update.addActionListener(this);
+		delete.addActionListener(this);
+		
+		crudPanel.setLayout(new GridLayout(1,4));
+		crudPanel.add(create);
+		crudPanel.add(read);
+		crudPanel.add(update);
+		crudPanel.add(delete);
+		crudPanel.updateUI();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		JCheckBox source = (JCheckBox) (event.getSource());
+		if(source.equals(create)) {
+			crud.setCreate(source.isSelected());
+		} else if(source.equals(read)) {
+			crud.setRead(source.isSelected());
+		} else if(source.equals(update)) {
+			crud.setUpdate(source.isSelected());
+		} else {
+			crud.setDelete(source.isSelected());
+		}
+		usecase.addCRUD(crud);
 	}
 }
