@@ -6,7 +6,7 @@ import fileimport.ReaderFactory;
 
 
 public class GUIController {
-	DataController dc;
+	DataController dc = DataController.getInstance();
 	ReportGenerator rg = new ReportGenerator();
 	OutputWriter ow = new OutputWriter();
 	ReaderFactory rf = new ReaderFactory();
@@ -25,5 +25,9 @@ public class GUIController {
 	
 	public void write(String fp, String form) {
 		ow.write(fp, form);
+	}
+	
+	public ModelDiagram getModel() {
+		return dc.getModel();
 	}
 }

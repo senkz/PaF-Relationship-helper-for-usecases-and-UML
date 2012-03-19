@@ -30,4 +30,8 @@ public class UMLClass implements DiagramObject{
 	public void setNaam(String nm) {
 		this.naam = nm;
 	}
+	
+	public String toString() {
+		return naam;
+	}
 }

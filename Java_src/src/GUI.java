@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,6 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import model.DiagramObject;
+import model.UMLCRUD;
+import model.UMLClass;
+import model.UMLUsecase;
 
 import controller.GUIController;
 
@@ -40,6 +46,7 @@ public class GUI {
 					filename.setText(fileBrowser.getSelectedFile().getName());
 					dir.setText(fileBrowser.getCurrentDirectory().toString());
 					guic.read(dir.getText()+"\\"+filename.getText());
+					initializeUMLDropdownPanel();
 				}
 				if (rVal == JFileChooser.CANCEL_OPTION) {
 					filename.setText("You pressed cancel");
@@ -98,5 +105,30 @@ public class GUI {
 
 		Graphics g = drawPanel.getGraphics();
 		g.fillRect(40, 160, 50, 160);
+	}
+	
+	private void initializeUMLDropdownPanel() {
+		JPanel modelDropdowns = new JPanel();
+		JComboBox<UMLClass> UMLClass = new JComboBox<UMLClass>();
+		JComboBox<UMLUsecase> UMLUsecase = new JComboBox<UMLUsecase>();
+		
+		if(guic.getModel() == null) {
+			System.out.println("NULL modeldiagram");
+			return;
+		}
+		
+		for(DiagramObject dio : guic.getModel().getDiagramObjects()) {
+			if(dio.getClass() == UMLClass.class) {
+				UMLClass.addItem((model.UMLClass) dio);
+			}
+			if(dio.getClass() == UMLUsecase.class) {
+				UMLUsecase.addItem((model.UMLUsecase) dio);
+			}
+		}
+		
+		modelDropdowns.setLayout(new BorderLayout());
+		modelDropdowns.add(UMLClass,BorderLayout.EAST);
+		modelDropdowns.add(UMLUsecase,BorderLayout.WEST);
+		frame.add(modelDropdowns);
 	}
 }
