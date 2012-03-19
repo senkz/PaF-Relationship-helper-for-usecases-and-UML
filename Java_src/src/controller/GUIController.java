@@ -1,5 +1,10 @@
 package controller;
+import javax.swing.JPanel;
+
 import model.ModelDiagram;
+import model.UMLCRUD;
+import model.UMLClass;
+import model.UMLUsecase;
 import fileexport.OutputWriter;
 import fileexport.ReportGenerator;
 import fileimport.ReaderFactory;
@@ -15,8 +20,8 @@ public class GUIController {
 		dc =  DataController.getInstance();
 	}
 	
-	public void generateReport() {
-		rg.generateReport();
+	public JPanel generateReport(String reportType) {
+		return rg.generateReport(reportType);
 	}
 	
 	public void read(String fp) {
@@ -30,4 +35,13 @@ public class GUIController {
 	public ModelDiagram getModel() {
 		return dc.getModel();
 	}
+	
+	public void addCrud (UMLUsecase uc, UMLCRUD crud) {
+		dc.addCrud(uc, crud);
+	}
+	
+	public UMLCRUD getCrud(UMLClass uclass, UMLUsecase usecase) {
+		return dc.getCrud(uclass, usecase);
+	}
+	
 }
