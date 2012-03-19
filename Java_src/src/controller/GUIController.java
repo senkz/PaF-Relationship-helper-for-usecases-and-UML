@@ -24,8 +24,9 @@ public class GUIController {
 		return rg.generateReport(reportType);
 	}
 	
-	public void read(String fp) {
+	public void read(String fp, JPanel jp) {
 		dc.addModel(rf.read(fp));
+		dc.getModel().draw(jp);
 	}
 	
 	public void write(String fp, String form) {

@@ -1,12 +1,13 @@
 package model;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.DataController;
@@ -73,7 +74,6 @@ public class ModelDiagram {
 	
 	public void draw(JPanel jp) {
 		Graphics g = jp.getGraphics();
-		g.setFont(new Font("Arial", 2, 18));
 		
 		ArrayList<String> objectTypes = new ArrayList<String>();
 		
@@ -104,8 +104,5 @@ public class ModelDiagram {
 	    
 		g.drawRect(160, 210, 50, 110);
 		g.fillRect(160, 210, 50, 110);
-		jp.updateUI();
-		System.out.println(g.toString());
-		jp.printAll(g);
 	}
 }

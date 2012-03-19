@@ -31,6 +31,7 @@ public class GUI implements ActionListener {
 	private JComboBox<String> reportType = new JComboBox<String>();
 	private JPanel modelDropdowns = new JPanel();
 	private JPanel crudPanel = new JPanel();
+	private JPanel drawPanel = new JPanel();
 	private UMLCRUD crud;
 	private JCheckBox create = new JCheckBox("Create");
 	private JCheckBox read = new JCheckBox("Read");
@@ -54,7 +55,7 @@ public class GUI implements ActionListener {
 				if (rVal == JFileChooser.APPROVE_OPTION) {
 					filename.setText(fileBrowser.getSelectedFile().getName());
 					dir.setText(fileBrowser.getCurrentDirectory().toString());
-					guic.read(dir.getText()+"\\"+filename.getText());
+					guic.read(dir.getText()+"\\"+filename.getText(), drawPanel);
 					refreshUMLDropdownPanel();
 				}
 				if (rVal == JFileChooser.CANCEL_OPTION) {
@@ -110,9 +111,8 @@ public class GUI implements ActionListener {
 		exportPanel.add(reportType);
 		exportPanel.add(reportButton);
 		
-		JPanel drawPanel = new JPanel();
 		drawPanel.setPreferredSize(new Dimension(400,400));
-		drawPanel.setBackground(Color.RED);
+		drawPanel.setBackground(Color.WHITE);
 		drawPanel.setForeground(Color.BLACK);
 
 		JPanel buttonPanel = new JPanel();
